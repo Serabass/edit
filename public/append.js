@@ -1,0 +1,1 @@
+var script = document.createElement('script');script.src = 'http://edit.me/script.js';document.head.appendChild(script);
