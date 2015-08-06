@@ -21,24 +21,25 @@
 
             (function () {
 
-                var f = document.createElement("form");
-                f.setAttribute('method',"POST");
-                f.setAttribute('action',"http://ed.it/save");
+                var form = document.createElement("form");
+                form.setAttribute('method',"POST");
+                form.setAttribute('action',"http://ed.it/save");
 
-                var i = document.createElement("textarea");
-                i.name = "before";
-                i.id = "before";
-                i.value = content.before;
+                var fields = {
+                    before: content.before,
+                    after: content.after,
+                    url: location.href
+                };
 
-                var i2 = document.createElement("textarea");
-                i2.name = "after";
-                i2.id = "after";
-                i2.value = content.after;
+                for (var x in fields) {
+                    var field = document.createElement("textarea");
+                    field.name = x;
+                    field.id = x;
+                    field.value = fields[x];
+                    form.appendChild(field);
+                }
 
-                f.appendChild(i);
-                f.appendChild(i2);
-
-                f.submit();
+                form.submit();
             })();
         };
 
