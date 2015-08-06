@@ -13,12 +13,11 @@
         };
         el.contentEditable = true;
         var button = document.createElement('button');
-        button.innerHTML = 'Save!';
+        button.innerText = 'Save!';
         button.style.cssText = 'position: fixed; top: 60px; left: 40px;';
 
         button.onclick = function () {
             content.after = el.innerHTML;
-            el.innerHTML = content.before;
 
             (function () {
 

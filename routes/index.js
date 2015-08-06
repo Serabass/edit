@@ -11,14 +11,23 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', script: 'javascript:'+ fs.readFileSync('F:/Git/edit/public/append.js')});
 });
 
-router.post('/save', bodyParser.json({limit: '1000mb'}), function (req, res) {
+router.post('/save', bodyParser.text({limit: '1000mb'}), function (req, res) {
   var before = req.body.before;
   var after = req.body.after;
 
   var beforeMinified = minify(before);
   var afterMinified = minify(after);
 
-  console.log(diff.diffChars(beforeMinified, afterMinified));
+  var df = diff.diffChars(beforeMinified, afterMinified);
+
+  df = df.filter(function (el) {
+    if (el.added === void 0 && el.removed === void 0)
+      return false;
+
+    return true;
+  });
+
+  console.log(df);
 
   res.redirect(req.headers.referer);
 });
