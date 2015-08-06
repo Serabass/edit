@@ -21,10 +21,7 @@ router.post('/save', bodyParser.text({limit: '1000mb'}), function (req, res) {
   var df = diff.diffChars(beforeMinified, afterMinified);
 
   df = df.filter(function (el) {
-    if (el.added === void 0 && el.removed === void 0)
-      return false;
-
-    return true;
+      return !(el.added === void 0 && el.removed === void 0);
   });
 
   console.log(df);
