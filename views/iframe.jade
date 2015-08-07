@@ -1,0 +1,5 @@
+- for (var i = 0; i < styles.length; i++)
+    link(rel="stylesheet", href=styles[i])
+- for (var i = 0; i < diff.length; i++)
+    - part = diff[i]
+    span.highlight(style=handle(part))!= part.value

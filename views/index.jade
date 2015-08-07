@@ -1,6 +1,17 @@
 extends layout
 
 block content
-  h1 Edit.me - Write everything!
-
+  h1 Edit - Write everything!
   a.bm(href=script) Bookmarklet
+  .clear
+  div
+  .clear
+  div(ng-controller="SearchCtrl")
+  
+   .list
+     input(type="text",ng-model="query",ng-model-options="{debounce: { 'default': 500, 'blur': 0 }}")
+     ul 
+      li(ng-repeat="(index, value) in data", ng-class="{'selected': currentId == value.id}")
+        a(href="#", ng-click="$parent.currentId = value.id")
+          | {{ value.id}}: {{ value.url }}
+   iframe#content(ng-attr-src="{{ '/iframe/' + currentId }}", style="width: 920px;")
